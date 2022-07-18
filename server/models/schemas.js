@@ -5,10 +5,10 @@ const DB_URL = process.env.MONGODB_URI;
 mongoose
   .connect(DB_URL)
   .then(() => {
-    console.log("Connected to Mongodb");
+    console.log("Connected to Mongodb.");
   })
   .catch((err) => {
-    console.log(`${err} occured during connection`);
+    console.log(`${err} occured during connection.`);
   });
 
 const fighterSchema = mongoose.Schema({

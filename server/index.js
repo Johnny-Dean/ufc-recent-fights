@@ -13,10 +13,10 @@ const typeDefs = gql`
     Name: String!
     Record: [Fight]
   }
-
+  # Throwing a non-null error, beleive if a fighter is on the events but not in ufcstats.com it becomes an error, during our event scrapping check if fighter exists if it doesn't insert a blank template
   type EventFight {
-    Red: Fighter!
-    Blue: Fighter!
+    Red: Fighter
+    Blue: Fighter
   }
 
   type Event {
@@ -35,9 +35,9 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     allFighters: async () => Fighter.find({}),
-    findFighter: async (root, args) => Fighter.findOne({ Name: args.Name }),
+    findFighter: async (args) => Fighter.findOne({ Name: args.Name }),
     allEvents: async () => Event.find({}),
-    findEvent: async (root, args) => Event.findOne({ Title: args.Title }),
+    findEvent: async (args) => Event.findOne({ Title: args.Title }),
   },
 
   EventFight: {
@@ -52,5 +52,5 @@ const server = new ApolloServer({
 });
 
 server.listen().then(({ url }) => {
-  console.log(`server ready @ ${url}`);
+  console.log(`server ready at: ${url}`);
 });
