@@ -2,26 +2,27 @@ const { ApolloServer, gql } = require("apollo-server");
 const { Fighter, Event } = require("./models/schemas");
 const typeDefs = gql`
   type Fight {
-    Outcome: String!
-    Opponent: String!
-    Method: String!
-    Round: Int!
-    Time: String!
+    outcome: String!
+    opponent: String!
+    method: String!
+    round: Int!
+    time: String!
   }
 
   type Fighter {
-    Name: String!
-    Record: [Fight]
+    name: String!
+    record: [Fight]
   }
   # Throwing a non-null error, beleive if a fighter is on the events but not in ufcstats.com it becomes an error, during our event scrapping check if fighter exists if it doesn't insert a blank template
   type EventFight {
-    Red: Fighter
-    Blue: Fighter
+    red: Fighter
+    blue: Fighter
   }
 
   type Event {
-    Title: String!
-    Fights: [EventFight]!
+    org: String
+    title: String!
+    fights: [EventFight]!
   }
 
   type Query {
@@ -35,14 +36,14 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     allFighters: async () => Fighter.find({}),
-    findFighter: async (args) => Fighter.findOne({ Name: args.Name }),
+    findFighter: async (args) => Fighter.findOne({ name: args.name }),
     allEvents: async () => Event.find({}),
-    findEvent: async (args) => Event.findOne({ Title: args.Title }),
+    findEvent: async (args) => Event.findOne({ title: args.title }),
   },
 
   EventFight: {
-    Red: async (root) => Fighter.findOne({ Name: root.Red }),
-    Blue: async (root) => Fighter.findOne({ Name: root.Blue }),
+    red: async (root) => Fighter.findOne({ name: root.red }),
+    blue: async (root) => Fighter.findOne({ name: root.blue }),
   },
 };
 

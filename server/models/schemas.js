@@ -12,15 +12,15 @@ mongoose
   });
 
 const fighterSchema = mongoose.Schema({
-  Name: String,
+  name: String,
   // @Note: Round will be turned into an integer in the next version of the scrapper
   Record: [
     {
-      Outcome: String,
-      Opponent: String,
-      Method: String,
-      Round: String,
-      Time: String,
+      outcome: String,
+      opponent: String,
+      method: String,
+      round: String,
+      time: String,
     },
   ],
 });
@@ -28,8 +28,9 @@ const fighterSchema = mongoose.Schema({
 const Fighter = mongoose.model("Fighter", fighterSchema);
 
 const EventSchema = mongoose.Schema({
-  Title: String,
-  Fights: [{ Red: String, Blue: String }],
+  org: String,
+  title: String,
+  fights: [{ red: String, blue: String }],
 });
 
 const Event = mongoose.model("Event", EventSchema);
