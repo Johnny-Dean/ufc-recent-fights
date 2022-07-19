@@ -1,0 +1,13 @@
+.fightcard {
+  border: black 2px solid;
+  margin-bottom: 1rem;
+  width: 15em;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+.main {
+  font: 1rem;
+}
+.comain {
+  font: 1rem;
+}
