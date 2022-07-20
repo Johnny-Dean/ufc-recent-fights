@@ -51,7 +51,7 @@ const resolvers = {
     allFighters: async () => Fighter.find({}),
     findFighter: async (args) => Fighter.findOne({ name: args.name }),
     allFightCards: async () => Event.find({}),
-    findFightCardDetails: async (args) => Event.findOne({ title: args.title }),
+    findFightCardDetails: async (args) => Event.findOne({ _id: args._id }),
   },
   DetailedFight: {
     red: async (root) => Fighter.findOne({ name: root.red }),

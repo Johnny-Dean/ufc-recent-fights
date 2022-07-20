@@ -16,9 +16,6 @@ export default function FightCard(props: FightCardProps) {
         <p className="main">
           {props.main.red} vs {props.main.blue}
         </p>
-        <p className="comain">
-          {props.comain.red} vs {props.comain.blue}
-        </p>
       </div>
     </Link>
   );

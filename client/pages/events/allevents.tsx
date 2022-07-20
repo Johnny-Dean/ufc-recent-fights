@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { gql, useQuery } from "@apollo/client";
-import { Event } from "../types";
-import FightCard from "../components/fightcardpreview";
-import styles from "../styles/event.module.css";
+import { Event } from "../../types";
+import FightCard from "../../components/fightcardpreview";
+import styles from "../../styles/event.module.css";
 
 const AllEventsQuery = gql`
   query FightCards {
