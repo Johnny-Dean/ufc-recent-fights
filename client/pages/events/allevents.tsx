@@ -3,6 +3,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Event } from "../../types";
 import FightCard from "../../components/fightcardpreview";
 import styles from "../../styles/event.module.css";
+import { getAllEventIds } from "../../lib/event";
 
 const AllEventsQuery = gql`
   query FightCards {
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
   const { data, error, loading } = useQuery(AllEventsQuery);
   if (loading) return <p>loading</p>;
   if (error) return <p>error</p>;
+  getAllEventIds();
   return (
     <div className={styles.container}>
       <h1>Upcoming MMA Events</h1>
