@@ -1,5 +1,6 @@
 const { ApolloServer, gql } = require("apollo-server");
 const { Fighter, Event } = require("./models/schemas");
+
 // Thinking about this I think we should differ between when we want an event with all the
 // fighter information vs when we want an event with just the fighter names as we have stored
 const typeDefs = gql`
@@ -40,18 +41,18 @@ const typeDefs = gql`
 
   type Query {
     allFighters: [Fighter!]!
-    findFighter(Name: String): Fighter
+    findFighter(name: String): Fighter
     allFightCards: [FightCard!]!
-    findFightCardDetails(Title: String): DetailedFightCard
+    findFightCardDetails(id: String!): DetailedFightCard
   }
 `;
 
 const resolvers = {
   Query: {
     allFighters: async () => Fighter.find({}),
-    findFighter: async (args) => Fighter.findOne({ name: args.name }),
+    findFighter: async (_, args) => Fighter.findOne({ name: args.name }),
     allFightCards: async () => Event.find({}),
-    findFightCardDetails: async (args) => Event.findOne({ _id: args._id }),
+    findFightCardDetails: async (_, args) => Event.findById(args.id),
   },
   DetailedFight: {
     red: async (root) => Fighter.findOne({ name: root.red }),
