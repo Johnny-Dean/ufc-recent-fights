@@ -1,22 +1,9 @@
 import type { NextPage } from "next";
-import { gql, useQuery } from "@apollo/client";
-import { Event } from "../../types";
+import { useQuery } from "@apollo/client";
+import { FightEvent } from "../../types";
 import FightCard from "../../components/fightcardpreview";
 import styles from "../../styles/event.module.css";
-import { getAllEventIds } from "../../lib/event";
-
-const AllEventsQuery = gql`
-  query FightCards {
-    allFightCards {
-      org
-      title
-      fights {
-        blue
-        red
-      }
-    }
-  }
-`;
+import { AllEventsQuery, getAllEventIds } from "../../lib/event";
 
 const Home: NextPage = () => {
   const { data, error, loading } = useQuery(AllEventsQuery);
@@ -27,12 +14,15 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <h1>Upcoming MMA Events</h1>
       <div className={styles.grid}>
-        {data.allFightCards.map((event: Event) => (
+        {data.allFightCards.map((event: FightEvent) => (
           <FightCard
-            key={event.title}
-            title={event.title}
-            main={event.fights[0]}
-            comain={event.fights[1]}
+            // Is there a better way to write this than !
+            // We know they'll never be null here
+            id={event.id!}
+            key={event.id}
+            title={event.title!}
+            main={event.fights![0]}
+            comain={event.fights![1]}
           />
         ))}
       </div>

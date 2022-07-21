@@ -1,6 +1,20 @@
 import { gql } from "@apollo/client";
 import apolloClient from "./apollo";
 
+export const AllEventsQuery = gql`
+  query FightCards {
+    allFightCards {
+      id
+      org
+      title
+      fights {
+        blue
+        red
+      }
+    }
+  }
+`;
+
 const AllEventsIdQuery = gql`
   query AllFightCards {
     allFightCards {
@@ -9,21 +23,34 @@ const AllEventsIdQuery = gql`
   }
 `;
 
-export function getAllEventIds() {
+export async function getAllEventIds() {
   // Research better way besides interfaces to define this ?? probably an inline way
   // Figure out what to do about all the anys because we are entirely cirumventing typescript
-  let result: any = [];
-  const data = apolloClient
-    .query({
-      query: AllEventsIdQuery,
-    })
-    .then((res: any) => {
-      console.log(result);
-      res.data.allFightCards.map((event: any) =>
-        result.push({ params: { id: `${event.id}` } })
-      );
-    })
-    .catch((err) =>
-      console.log("Error fetching event ids for dynamic routes: " + err)
-    );
+  return apolloClient.query({
+    query: AllEventsIdQuery,
+  });
+}
+
+const EventQuery = gql`
+  query FindFightCardDetails($findFightCardDetailsId: String!) {
+    findFightCardDetails(id: $findFightCardDetailsId) {
+      title
+      fights {
+        red {
+          name
+        }
+        blue {
+          name
+        }
+      }
+    }
+  }
+`;
+export async function getEventDetails(id: string) {
+  return apolloClient.query({
+    query: EventQuery,
+    variables: {
+      findFightCardDetailsId: id,
+    },
+  });
 }

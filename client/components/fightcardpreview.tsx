@@ -4,13 +4,14 @@ import styles from "../styles/fightcardpreview.module.css";
 import Link from "next/link";
 
 interface FightCardProps {
+  id: string;
   title: string;
   main: Fight;
   comain: Fight;
 }
 export default function FightCard(props: FightCardProps) {
   return (
-    <Link href={`/event/${props.title}`}>
+    <Link href={`/events/${props.id}`}>
       <div className={styles.fightcard}>
         <h1>{props.title}</h1>
         <p className="main">
