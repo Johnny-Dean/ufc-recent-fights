@@ -1,16 +1,68 @@
 import { getAllEventIds, getEventDetails } from "../../lib/event";
-import { FightEvent } from "../../types";
+import { DetailedFight, FightEvent, PastFight } from "../../types";
+import styles from "../../styles/event.module.css";
+
+interface FightProps {
+  fight: DetailedFight;
+}
+
+function FightRow({ outcome, opponent, method, round, time }: PastFight) {
+  return (
+    <tr>
+      <th>{outcome}</th>
+      <th>{opponent}</th>
+      <th>{method}</th>
+      <th>{round.toString()}</th>
+      <th>{time}</th>
+    </tr>
+  );
+}
+
+function Fight({ fight }: FightProps) {
+  return (
+    <>
+      <button>
+        {fight.blue.name} vs {fight.red.name}
+      </button>
+
+      <div className={styles.records_container}>
+        <div>
+          <tr>
+            <th>Outcome</th>
+            <th>Opponent</th>
+            <th>Method</th>
+            <th>Round</th>
+            <th>Time</th>
+          </tr>
+          {fight.blue.record.map((fight: PastFight) => (
+            <FightRow key={fight.outcome} {...fight} />
+          ))}
+        </div>
+        <div>
+          <th>Outcome</th>
+          <th>Opponent</th>
+          <th>Method</th>
+          <th>Round</th>
+          <th>Time</th>
+          {fight.red.record.map((fight: PastFight) => (
+            <FightRow key={fight.outcome} {...fight} />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default function Event({ eventData }: any) {
   return (
-    <div>
-      <h1>{eventData.findFightCardDetails.title}</h1>
-      {eventData.findFightCardDetails.fights.map((fight: any) => (
-        <h1 key={fight.blue.name + fight.red.name}>
-          {fight.blue.name} vs {fight.red.name}
-        </h1>
-      ))}
-    </div>
+    <>
+      <h1>{eventData.findFightCard.title}</h1>
+      <div className={styles.fight_container}>
+        {eventData.findFightCard.fights.map((fight: DetailedFight) => (
+          <Fight key={123} fight={fight} />
+        ))}
+      </div>
+    </>
   );
 }
 

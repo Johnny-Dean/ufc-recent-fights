@@ -13,3 +13,22 @@
   max-width: 75%;
   margin-top: 1em;
 }
+
+.fightinfo {
+  background: red;
+}
+
+.fight_container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  max-width: 30em;
+}
+
+.records_container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 1rem;
+}

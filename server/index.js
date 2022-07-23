@@ -43,7 +43,7 @@ const typeDefs = gql`
     allFighters: [Fighter!]!
     findFighter(name: String): Fighter
     allFightCards: [FightCard!]!
-    findFightCardDetails(id: String!): DetailedFightCard
+    findFightCard(id: String!): DetailedFightCard
   }
 `;
 
@@ -52,7 +52,7 @@ const resolvers = {
     allFighters: async () => Fighter.find({}),
     findFighter: async (_, args) => Fighter.findOne({ name: args.name }),
     allFightCards: async () => Event.find({}),
-    findFightCardDetails: async (_, args) => Event.findById(args.id),
+    findFightCard: async (_, args) => Event.findById(args.id),
   },
   DetailedFight: {
     red: async (root) => Fighter.findOne({ name: root.red }),

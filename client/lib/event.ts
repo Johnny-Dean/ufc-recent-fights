@@ -32,15 +32,29 @@ export async function getAllEventIds() {
 }
 
 const EventQuery = gql`
-  query FindFightCardDetails($findFightCardDetailsId: String!) {
-    findFightCardDetails(id: $findFightCardDetailsId) {
+  query FindFightCard($findFightCardId: String!) {
+    findFightCard(id: $findFightCardId) {
       title
       fights {
         red {
           name
+          record {
+            outcome
+            opponent
+            method
+            round
+            time
+          }
         }
         blue {
           name
+          record {
+            outcome
+            opponent
+            method
+            time
+            round
+          }
         }
       }
     }
@@ -50,7 +64,7 @@ export async function getEventDetails(id: string) {
   return apolloClient.query({
     query: EventQuery,
     variables: {
-      findFightCardDetailsId: id,
+      findFightCardId: id,
     },
   });
 }

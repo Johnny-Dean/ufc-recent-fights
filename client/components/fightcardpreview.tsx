@@ -12,12 +12,14 @@ interface FightCardProps {
 export default function FightCard(props: FightCardProps) {
   return (
     <Link href={`/events/${props.id}`}>
-      <div className={styles.fightcard}>
-        <h1>{props.title}</h1>
-        <p className="main">
-          {props.main.red} vs {props.main.blue}
-        </p>
-      </div>
+      <a>
+        <div className={styles.fightcard}>
+          <h1>{props.title}</h1>
+          <p className="main">
+            {props.main.red} vs {props.main.blue}
+          </p>
+        </div>
+      </a>
     </Link>
   );
 }
