@@ -4,6 +4,7 @@
   text-align: center;
   flex-direction: column;
 }
+
 .grid {
   display: flex;
   justify-content: space-evenly;
@@ -12,10 +13,6 @@
   margin: 0 auto;
   max-width: 75%;
   margin-top: 1em;
-}
-
-.fightinfo {
-  background: red;
 }
 
 .fight_container {
@@ -31,4 +28,8 @@
   flex-direction: row;
   gap: 2rem;
   padding: 1rem;
+}
+
+.hide_records_container {
+  display: none;
 }

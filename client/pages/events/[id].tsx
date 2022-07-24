@@ -1,53 +1,68 @@
 import { getAllEventIds, getEventDetails } from "../../lib/event";
 import { DetailedFight, FightEvent, PastFight } from "../../types";
 import styles from "../../styles/event.module.css";
+import cn from "classnames";
+import { useState } from "react";
+
+function RecordRowHeader() {
+  return (
+    <thead>
+      <tr>
+        <th>Outcome</th>
+        <th>Opponent</th>
+        <th>Method</th>
+        <th>Round</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+  );
+}
+
+function RecordRow({ outcome, opponent, method, round, time }: PastFight) {
+  return (
+    <tbody>
+      <tr>
+        <th>{outcome}</th>
+        <th>{opponent}</th>
+        <th>{method}</th>
+        <th>{round.toString()}</th>
+        <th>{time}</th>
+      </tr>
+    </tbody>
+  );
+}
 
 interface FightProps {
   fight: DetailedFight;
 }
 
-function FightRow({ outcome, opponent, method, round, time }: PastFight) {
-  return (
-    <tr>
-      <th>{outcome}</th>
-      <th>{opponent}</th>
-      <th>{method}</th>
-      <th>{round.toString()}</th>
-      <th>{time}</th>
-    </tr>
-  );
-}
-
 function Fight({ fight }: FightProps) {
+  const [hide, setHide] = useState(true);
+  const handleClick = () => setHide(!hide);
+
   return (
     <>
-      <button>
+      <button onClick={handleClick}>
         {fight.blue.name} vs {fight.red.name}
       </button>
-
-      <div className={styles.records_container}>
-        <div>
-          <tr>
-            <th>Outcome</th>
-            <th>Opponent</th>
-            <th>Method</th>
-            <th>Round</th>
-            <th>Time</th>
-          </tr>
-          {fight.blue.record.map((fight: PastFight) => (
-            <FightRow key={fight.outcome} {...fight} />
+      <div
+        className={cn({
+          [styles.hide_records_container]: hide === true,
+          [styles.records_container]: hide === false,
+        })}
+      >
+        <table>
+          <RecordRowHeader />
+          {fight.blue.record.map((fight: PastFight, index: number) => (
+            <RecordRow key={index + 1} {...fight} />
           ))}
-        </div>
-        <div>
-          <th>Outcome</th>
-          <th>Opponent</th>
-          <th>Method</th>
-          <th>Round</th>
-          <th>Time</th>
-          {fight.red.record.map((fight: PastFight) => (
-            <FightRow key={fight.outcome} {...fight} />
+        </table>
+        <table>
+          <RecordRowHeader />
+          {fight.red.record.map((fight: PastFight, index: number) => (
+            <RecordRow key={index + 2} {...fight} />
           ))}
-        </div>
+        </table>
       </div>
     </>
   );
@@ -57,10 +72,13 @@ export default function Event({ eventData }: any) {
   return (
     <>
       <h1>{eventData.findFightCard.title}</h1>
+      {/* Would this be better as its own component or is that abstracting too much away? */}
       <div className={styles.fight_container}>
-        {eventData.findFightCard.fights.map((fight: DetailedFight) => (
-          <Fight key={123} fight={fight} />
-        ))}
+        {eventData.findFightCard.fights.map(
+          (fight: DetailedFight, index: number) => (
+            <Fight key={index} fight={fight} />
+          )
+        )}
       </div>
     </>
   );
