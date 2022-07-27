@@ -26,8 +26,16 @@ const typeDefs = gql`
     blue: Fighter
   }
 
+  type Physical {
+    height: Float!
+    weight: Int!
+    reach: Int!
+    age: Int!
+  }
+
   type Fighter {
     name: String!
+    physical: Physical!
     record: [PastFight]
   }
 

@@ -13,7 +13,12 @@ mongoose
 
 const fighterSchema = mongoose.Schema({
   name: String,
-  // @Note: Round will be turned into an integer in the next version of the scrapper
+  physical: {
+    height: Number,
+    weight: Number,
+    reach: Number,
+    age: Number,
+  },
   record: [
     {
       outcome: String,
