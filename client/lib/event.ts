@@ -3,7 +3,7 @@ import apolloClient from "./apollo";
 
 export const AllEventsQuery = gql`
   query FightCards {
-    fightCards: allFightCards {
+    fightCards: allEvents {
       id
       org
       title
@@ -24,42 +24,12 @@ export async function getAllEvents() {
 }
 
 const EventQuery = gql`
-  query FindFightCard($findFightCardId: String!) {
-    fightcard: findFightCard(id: $findFightCardId) {
+  query FindEvent($findEventId: ID) {
+    event: findEvent(id: $findEventId) {
       title
       fights {
-        red {
-          name
-          physical {
-            height
-            weight
-            age
-            reach
-          }
-          record {
-            outcome
-            opponent
-            method
-            round
-            time
-          }
-        }
-        blue {
-          name
-          physical {
-            height
-            weight
-            age
-            reach
-          }
-          record {
-            outcome
-            opponent
-            method
-            time
-            round
-          }
-        }
+        red
+        blue
       }
     }
   }
@@ -68,7 +38,41 @@ export async function getEventDetails(id: string) {
   return apolloClient.query({
     query: EventQuery,
     variables: {
-      findFightCardId: id,
+      findEventId: id,
+    },
+  });
+}
+
+const FightQuery = gql`
+  query FindFight($firstFighter: String, $secondFighter: String) {
+    Fight: findFight(
+      first_fighter: $firstFighter
+      second_fighter: $secondFighter
+    ) {
+      name
+      physical {
+        height
+        weight
+        reach
+        age
+      }
+      record {
+        outcome
+        opponent
+        method
+        round
+        time
+      }
+    }
+  }
+`;
+
+export async function getFight(first_fighter: string, second_fighter: string) {
+  return apolloClient.query({
+    query: FightQuery,
+    variables: {
+      firstFighter: first_fighter,
+      secondFighter: second_fighter,
     },
   });
 }

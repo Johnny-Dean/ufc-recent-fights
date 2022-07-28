@@ -1,84 +1,16 @@
-import { getAllEventIds, getEventDetails } from "../../lib/event";
-import { DetailedFight, FightEvent, PastFight } from "../../types";
+import { getEventDetails } from "../../lib/event";
+import { Fight } from "../../types";
 import styles from "../../styles/event.module.css";
-import cn from "classnames";
-import { useState } from "react";
-
-function RecordRowHeader() {
-  return (
-    <thead>
-      <tr>
-        <th>Outcome</th>
-        <th>Opponent</th>
-        <th>Method</th>
-        <th>Round</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-  );
-}
-
-function RecordRow({ outcome, opponent, method, round, time }: PastFight) {
-  return (
-    <tbody>
-      <tr>
-        <th>{outcome}</th>
-        <th>{opponent}</th>
-        <th>{method}</th>
-        <th>{round.toString()}</th>
-        <th>{time}</th>
-      </tr>
-    </tbody>
-  );
-}
-
-interface FightProps {
-  fight: DetailedFight;
-}
-
-function Fight({ fight }: FightProps) {
-  const [hide, setHide] = useState(true);
-  const handleClick = () => setHide(!hide);
-
-  return (
-    <>
-      <button onClick={handleClick}>
-        {fight.blue.name} vs {fight.red.name}
-      </button>
-      <div
-        className={cn({
-          [styles.hide_records_container]: hide === true,
-          [styles.records_container]: hide === false,
-        })}
-      >
-        <table>
-          <RecordRowHeader />
-          {fight.blue.record.map((fight: PastFight, index: number) => (
-            <RecordRow key={index + 1} {...fight} />
-          ))}
-        </table>
-        <table>
-          <RecordRowHeader />
-          {fight.red.record.map((fight: PastFight, index: number) => (
-            <RecordRow key={index + 2} {...fight} />
-          ))}
-        </table>
-      </div>
-    </>
-  );
-}
+import FightDetail from "../../components/FightDetail/FightDetail";
 
 export default function Event({ eventData }: any) {
   return (
     <>
-      <h1>{eventData.fightcard.title}</h1>
-      {/* Would this be better as its own component or is that abstracting too much away? */}
+      <h1>{eventData.event.title}</h1>
       <div className={styles.fight_container}>
-        {eventData.fightcard.fights.map(
-          (fight: DetailedFight, index: number) => (
-            <Fight key={index} fight={fight} />
-          )
-        )}
+        {eventData.event.fights.map((fight: Fight, index: number) => (
+          <FightDetail key={index} {...fight} />
+        ))}
       </div>
     </>
   );

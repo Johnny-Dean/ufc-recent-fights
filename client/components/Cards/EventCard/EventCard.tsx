@@ -1,15 +1,15 @@
 import React from "react";
-import { Fight } from "../types";
-import styles from "../styles/fightcardpreview.module.css";
+import { Fight } from "../../../types";
+import styles from "./EventCard.module.css";
 import Link from "next/link";
 
-interface FightCardProps {
+interface EventCardProps {
   id: string;
   title: string;
   main: Fight;
   comain: Fight;
 }
-export default function FightCard(props: FightCardProps) {
+export default function EventCard(props: EventCardProps) {
   return (
     <Link href={`/events/${props.id}`}>
       <a>

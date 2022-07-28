@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { FightEvent } from "../../types";
-import FightCard from "../../components/fightcardpreview";
+import EventCard from "../../components/Cards/EventCard/EventCard";
 import styles from "../../styles/event.module.css";
 import { getAllEvents } from "../../lib/event";
 
@@ -10,9 +10,7 @@ const Home: NextPage = ({ events }: any) => {
       <h1>Upcoming MMA Events</h1>
       <div className={styles.grid}>
         {events.map((event: FightEvent) => (
-          <FightCard
-            // Is there a better way to write this than !
-            // We know they'll never be null here
+          <EventCard
             id={event.id!}
             key={event.id}
             title={event.title!}
