@@ -5,7 +5,7 @@ const { Fighter, Event } = require("./models/schemas");
 // fighter information vs when we want an event with just the fighter names as we have stored
 const typeDefs = gql`
   type FightEvent {
-    id: ID!
+    id: String!
     org: String!
     title: String!
     fights: [FightPreview]
@@ -51,7 +51,7 @@ const resolvers = {
     allFighters: async () => Fighter.find({}),
     findFighter: async (_, args) => Fighter.findOne({ name: args.name }),
     allEvents: async () => Event.find({}),
-    findEvent: async (_, args) => Event.findOne({ id: args.id }),
+    findEvent: async (_, args) => Event.findOne({ _id: args.id }),
     findFight: async (_, args) => {
       fighter_one = Fighter.findOne({ name: args.first_fighter });
       fighter_two = Fighter.findOne({ name: args.second_fighter });
