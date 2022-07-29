@@ -1,4 +1,4 @@
-import { PastFight } from "../../types";
+import { PastFight } from "../../../types";
 
 function RowHeader() {
   return (

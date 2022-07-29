@@ -4,17 +4,18 @@ import { Fight } from "../../types";
 import cn from "classnames";
 import styles from "./FightDetail.module.css";
 import RecordTable from "../Fighter/RecordTable/RecordTable";
+import PhysicalStats from "../Fighter/PhysicalStats/PhysicalStats";
 
 export default function FightDetail({ red, blue }: Fight) {
   let [fight, setFight] = useState(undefined as any);
+  const [hide, setHide] = useState(true);
+  const handleClick = () => setHide(!hide);
+
   useEffect(() => {
     getFight(red, blue).then((res) => {
       setFight(res.data.Fight);
     });
   }, []);
-
-  const [hide, setHide] = useState(true);
-  const handleClick = () => setHide(!hide);
 
   if (fight) {
     const red = fight[0];
@@ -31,9 +32,11 @@ export default function FightDetail({ red, blue }: Fight) {
           })}
         >
           <div className={styles.fighter_container}>
+            <PhysicalStats {...red.physical} />
             <RecordTable record={red.record} />
           </div>
           <div className={styles.fighter_container}>
+            <PhysicalStats {...blue.physical} />
             <RecordTable record={blue.record} />
           </div>
         </div>
