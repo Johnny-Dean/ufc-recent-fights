@@ -21,14 +21,14 @@ export default function FightDetail({ red, blue }: Fight) {
     const red = fight[0];
     const blue = fight[1];
     return (
-      <>
-        <button onClick={handleClick}>
+      <div className={styles.container}>
+        <button className={styles.fight_btn} onClick={handleClick}>
           {red.name} vs {blue.name}
         </button>
         <div
           className={cn({
-            [styles.hide_content_container]: hide === true,
-            [styles.content_container]: hide === false,
+            [styles.hide_content]: hide === true,
+            [styles.content]: hide === false,
           })}
         >
           <div className={styles.fighter_container}>
@@ -40,7 +40,7 @@ export default function FightDetail({ red, blue }: Fight) {
             <RecordTable record={blue.record} />
           </div>
         </div>
-      </>
+      </div>
     );
   } else {
     return <button>loading...</button>;

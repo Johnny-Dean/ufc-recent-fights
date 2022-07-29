@@ -6,11 +6,13 @@ import FightDetail from "../../components/FightDetail/FightDetail";
 export default function Event({ eventData }: any) {
   return (
     <>
-      <h1>{eventData.event.title}</h1>
-      <div className={styles.fight_container}>
-        {eventData.event.fights.map((fight: Fight, index: number) => (
-          <FightDetail key={index} {...fight} />
-        ))}
+      <div className={styles.container}>
+        <h1>{eventData.event.title}</h1>
+        <div className={styles.fight_container}>
+          {eventData.event.fights.map((fight: Fight, index: number) => (
+            <FightDetail key={index} {...fight} />
+          ))}
+        </div>
       </div>
     </>
   );
