@@ -29,8 +29,8 @@ export interface DetailedFight {
 }
 
 export interface FightEvent {
-  id?: string;
-  org?: string;
-  title?: string;
-  fights?: Fight[];
+  id: string;
+  org: string;
+  title: string;
+  fights: Fight[];
 }

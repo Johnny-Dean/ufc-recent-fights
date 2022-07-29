@@ -2,14 +2,14 @@ import { gql } from "@apollo/client";
 import apolloClient from "./apollo";
 
 export const AllEventsQuery = gql`
-  query FightCards {
-    fightCards: allEvents {
+  query AllEvents {
+    events: allEvents {
       id
       org
       title
       fights {
-        blue
         red
+        blue
       }
     }
   }

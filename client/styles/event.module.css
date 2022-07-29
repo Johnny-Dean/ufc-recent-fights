@@ -1,24 +1,11 @@
 .container {
   display: flex;
-  align-items: center;
-  text-align: center;
   flex-direction: column;
-}
-
-.grid {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 1em;
-  flex-wrap: wrap;
-  margin: 0 auto;
-  max-width: 75%;
-  margin-top: 1em;
+  align-items: center;
 }
 
 .fight_container {
   display: flex;
-  justify-content: center;
-  text-align: center;
   flex-direction: column;
-  max-width: 30em;
+  background-color: red;
 }

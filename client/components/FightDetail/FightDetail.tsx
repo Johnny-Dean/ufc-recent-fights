@@ -6,8 +6,18 @@ import styles from "./FightDetail.module.css";
 import RecordTable from "../Fighter/RecordTable/RecordTable";
 import PhysicalStats from "../Fighter/PhysicalStats/PhysicalStats";
 
+function Fighter({ fighter }: any) {
+  return (
+    <div className={styles.fighter_container}>
+      <h1>{fighter.name}</h1>
+      <PhysicalStats {...fighter.physical} />
+      <RecordTable record={fighter.record} />
+    </div>
+  );
+}
+
 export default function FightDetail({ red, blue }: Fight) {
-  let [fight, setFight] = useState(undefined as any);
+  const [fight, setFight] = useState(undefined as any);
   const [hide, setHide] = useState(true);
   const handleClick = () => setHide(!hide);
 
@@ -21,7 +31,7 @@ export default function FightDetail({ red, blue }: Fight) {
     const red = fight[0];
     const blue = fight[1];
     return (
-      <div className={styles.container}>
+      <>
         <button className={styles.fight_btn} onClick={handleClick}>
           {red.name} vs {blue.name}
         </button>
@@ -31,18 +41,13 @@ export default function FightDetail({ red, blue }: Fight) {
             [styles.content]: hide === false,
           })}
         >
-          <div className={styles.fighter_container}>
-            <PhysicalStats {...red.physical} />
-            <RecordTable record={red.record} />
-          </div>
-          <div className={styles.fighter_container}>
-            <PhysicalStats {...blue.physical} />
-            <RecordTable record={blue.record} />
-          </div>
+          <Fighter fighter={red} />
+          <h1>VS</h1>
+          <Fighter fighter={blue} />
         </div>
-      </div>
+      </>
     );
   } else {
-    return <button>loading...</button>;
+    return <button className={styles.skeleton_btn}>loading</button>;
   }
 }

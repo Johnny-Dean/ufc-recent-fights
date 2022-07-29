@@ -29,13 +29,13 @@ function FightRecordRow({ outcome, opponent, method, round, time }: PastFight) {
 }
 
 interface RecordTableProps {
-  record: [PastFight];
+  record: PastFight[];
 }
 export default function RecordTable({ record }: RecordTableProps) {
   return (
     <table>
       <RowHeader />
-      {record.map((fight: PastFight, index: number) => (
+      {record.slice(0, 5).map((fight: PastFight, index: number) => (
         <FightRecordRow key={index + 1} {...fight} />
       ))}
     </table>
