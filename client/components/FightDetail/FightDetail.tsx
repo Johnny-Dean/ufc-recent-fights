@@ -3,18 +3,8 @@ import { getFight } from "../../lib/event";
 import { Fight } from "../../types";
 import cn from "classnames";
 import styles from "./FightDetail.module.css";
-import RecordTable from "../Fighter/RecordTable/RecordTable";
-import PhysicalStats from "../Fighter/PhysicalStats/PhysicalStats";
-
-function Fighter({ fighter }: any) {
-  return (
-    <div className={styles.fighter_container}>
-      <h1>{fighter.name}</h1>
-      <PhysicalStats {...fighter.physical} />
-      <RecordTable record={fighter.record} />
-    </div>
-  );
-}
+import Card from "../Cards/Card/Card";
+import Fighter from "../Fighter/Fighter";
 
 export default function FightDetail({ red, blue }: Fight) {
   const [fight, setFight] = useState(undefined as any);
@@ -31,23 +21,40 @@ export default function FightDetail({ red, blue }: Fight) {
     const red = fight[0];
     const blue = fight[1];
     return (
-      <>
-        <button className={styles.fight_btn} onClick={handleClick}>
+      <div className={styles.container}>
+        <div
+          className={cn({
+            [styles.fight_header]: hide === true,
+            [styles.fight_header_selected]: hide === false,
+          })}
+          onClick={handleClick}
+        >
           {red.name} vs {blue.name}
-        </button>
+        </div>
         <div
           className={cn({
             [styles.hide_content]: hide === true,
             [styles.content]: hide === false,
           })}
         >
-          <Fighter fighter={red} />
-          <h1>VS</h1>
-          <Fighter fighter={blue} />
+          <Card
+            alignment="flex-start"
+            className={styles.fighter_card}
+            border={"solid 1px blue"}
+            borderImage={"linear-gradient(to top right, darkred, red) 1"}
+            content={<Fighter fighter={red} />}
+          />
+          <Card
+            alignment="flex-start"
+            className={styles.fighter_card}
+            border={"solid 1px blue"}
+            borderImage={"linear-gradient(to top right, darkblue, blue) 1"}
+            content={<Fighter fighter={blue} />}
+          />
         </div>
-      </>
+      </div>
     );
   } else {
-    return <button className={styles.skeleton_btn}>loading</button>;
+    return <button className={styles.skeleton_header}></button>;
   }
 }

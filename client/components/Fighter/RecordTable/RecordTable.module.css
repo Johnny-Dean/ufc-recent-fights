@@ -1,0 +1,29 @@
+.table {
+  width: 25em;
+  margin: 0;
+}
+
+.table td {
+  padding: 0.35em;
+  margin: 0;
+}
+
+.table_align_left {
+  text-align: left;
+}
+
+.win_loss_indicator {
+  width: 30px;
+}
+
+.win svg {
+  fill: green;
+}
+
+.loss {
+  fill: red;
+}
+
+.no_contest {
+  fill: yellow;
+}
