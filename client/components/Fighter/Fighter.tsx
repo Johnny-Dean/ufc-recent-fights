@@ -3,7 +3,7 @@ import PhysicalStats from "../Fighter/PhysicalStats/PhysicalStats";
 import Card from "../Cards/Card/Card";
 import styles from "./Fighter.module.css";
 import { StrikingStats, GroundStats } from "./FightingStats/FightingStats";
-import cn from "ClassNames";
+import cn from "classnames";
 export default function Fighter({ fighter }: any) {
   return (
     <div className={styles.info_grid}>
