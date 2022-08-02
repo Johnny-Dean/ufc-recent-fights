@@ -19,6 +19,20 @@ const fighterSchema = mongoose.Schema({
     reach: Number,
     age: Number,
   },
+  stats: {
+    striking: {
+      strikes_per_minute: Number,
+      strikes_absorbed: Number,
+      strike_accuracy: Number,
+      strike_defense: Number,
+    },
+    ground: {
+      takedown_average: Number,
+      takedown_accuracy: Number,
+      takedown_defense: Number,
+      submissions_attempted: Number,
+    },
+  },
   record: [
     {
       outcome: String,

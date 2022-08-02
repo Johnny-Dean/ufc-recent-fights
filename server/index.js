@@ -19,6 +19,7 @@ const typeDefs = gql`
   type Fighter {
     name: String!
     physical: Physical!
+    stats: Stats
     record: [PastFight]
   }
 
@@ -27,6 +28,25 @@ const typeDefs = gql`
     weight: Int
     reach: Int
     age: Int
+  }
+
+  type Stats {
+    striking: Striking
+    ground: Ground
+  }
+
+  type Striking {
+    strikes_per_minute: Float
+    strikes_absorbed: Float
+    strike_accuracy: Int
+    strike_defense: Int
+  }
+
+  type Ground {
+    takedown_average: Float
+    takedown_accuracy: Int
+    takedown_defense: Int
+    submissions_attempted: Float
   }
 
   type PastFight {
