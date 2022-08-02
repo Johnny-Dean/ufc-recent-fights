@@ -85,7 +85,9 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.listen().then((props) => {
-  console.log(props);
-  console.log(`server ready at: ${props.url}`);
+server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
+  console.log(`
+    🚀  Server is ready at ${url}
+    📭  Query at https://studio.apollographql.com/dev
+  `);
 });
