@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://ufc-recent-fights-production.up.railway.app",
+  uri: "/4000",
   cache: new InMemoryCache(),
 });
 
