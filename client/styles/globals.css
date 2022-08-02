@@ -16,3 +16,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* 955 by 955 */
+@media screen and (max-width: 500px) {
+  html,
+  body {
+    font-size: 11.5px;
+  }
+}

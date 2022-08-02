@@ -56,6 +56,20 @@ const FightQuery = gql`
         reach
         age
       }
+      stats {
+        striking {
+          strikes_per_minute
+          strikes_absorbed
+          strike_accuracy
+          strike_defense
+        }
+        ground {
+          takedown_average
+          takedown_accuracy
+          takedown_defense
+          submissions_attempted
+        }
+      }
       record {
         outcome
         opponent

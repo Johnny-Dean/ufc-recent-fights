@@ -4,19 +4,24 @@
   text-align: center;
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  grid-area: stats;
+.striking {
+  grid-area: striking;
+  justify-self: end;
+}
+
+.ground {
+  grid-area: ground;
+  justify-self: end;
 }
 
 .physical {
-  grid-area: phys;
+  grid-area: physical;
+  justify-self: start;
 }
 
 .record {
   grid-area: record;
-  display: flex;
+  align-self: center;
 }
 
 .container {
@@ -24,14 +29,23 @@
   align-items: center;
 }
 
+.stat_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .info_grid {
   display: grid;
   width: 100%;
-  grid-template-columns: 50% 50%;
-  grid-template-rows: 3em 8em 1fr;
-  grid-gap: 10px;
+  margin-right: 2em;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 3em 8em 8em 1fr;
+  grid-gap: 1em 2em;
   grid-template-areas:
     "header  header"
-    "phys  stats"
-    "record record ";
+    "physical    striking"
+    ". ground"
+    "record  record ";
+  align-items: center;
 }

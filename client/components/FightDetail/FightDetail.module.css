@@ -1,8 +1,9 @@
 .content {
   display: flex;
   align-items: center;
-  gap: 2rem;
-  padding: 2rem;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1em;
 }
 
 .hide_content {
@@ -11,8 +12,13 @@
 
 .container {
   display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.container a {
+  font-size: 1.5em;
 }
 
 /* glimmer effect */
@@ -25,12 +31,10 @@
 .fight_header_selected {
   display: flex;
   justify-content: center;
-  gap: 1em;
   background: rgba(72, 72, 72, 0.5);
   border-radius: 4px;
   padding: 1em;
   min-width: 20em;
-  position: relative;
   cursor: pointer;
 }
 
@@ -39,13 +43,9 @@
   background: rgba(125, 125, 125, 0.5);
 }
 
-.fight_header_selected .dropdown_btn {
-  position: absolute;
-  top: 2.5em;
-}
-
-.fighter_card {
-  display: flex;
-  align-self: flex-start;
-  flex-direction: column;
+/* 955 by 955 */
+@media screen and (max-width: 955px) {
+  .content {
+    flex-direction: column;
+  }
 }

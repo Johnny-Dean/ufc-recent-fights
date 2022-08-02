@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .grid {
@@ -10,4 +11,16 @@
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 3em;
   grid-row-gap: 3em;
+}
+
+@media screen and (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
