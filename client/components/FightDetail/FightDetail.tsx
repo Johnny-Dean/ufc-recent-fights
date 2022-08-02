@@ -55,6 +55,10 @@ export default function FightDetail({ red, blue }: Fight) {
       </div>
     );
   } else {
-    return <button className={styles.skeleton_header}></button>;
+    return (
+      <div className={styles.skeleton_header}>
+        <div className={styles.skeleton_fake_content}></div>
+      </div>
+    );
   }
 }
