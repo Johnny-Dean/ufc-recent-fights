@@ -4,17 +4,30 @@ import Card from "../Cards/Card/Card";
 import styles from "./Fighter.module.css";
 import { StrikingStats, GroundStats } from "./FightingStats/FightingStats";
 import cn from "classnames";
-export default function Fighter({ fighter }: any) {
+import { Ground, PastFight, Physical, Striking } from "../../types";
+
+interface Props {
+  name: string;
+  physical: Physical;
+  stats: {
+    striking: Striking;
+    ground: Ground;
+  };
+  record: Array<PastFight>;
+}
+
+// name, physical, stats, record
+export default function Fighter({ name, physical, stats, record }: Props) {
   return (
     <div className={styles.info_grid}>
-      <h1 className={styles.header}>{fighter.name}</h1>
+      <h1 className={styles.header}>{name}</h1>
 
       <div
         className={cn({
           [styles.physical]: true,
         })}
       >
-        <Card content={<PhysicalStats {...fighter.physical} />} />
+        <Card content={<PhysicalStats {...physical} />} />
       </div>
 
       <div
@@ -22,7 +35,7 @@ export default function Fighter({ fighter }: any) {
           [styles.striking]: true,
         })}
       >
-        <Card width={"14.5em"} content={<StrikingStats {...fighter.stats} />} />
+        <Card width={"14.5em"} content={<StrikingStats {...stats} />} />
       </div>
 
       <div
@@ -30,12 +43,12 @@ export default function Fighter({ fighter }: any) {
           [styles.ground]: true,
         })}
       >
-        <Card content={<GroundStats {...fighter.stats} />} />
+        <Card content={<GroundStats {...stats} />} />
       </div>
       {/* Find a way to display a no ufc fight alert with proper width */}
-      {fighter.record.length !== 0 && (
+      {record.length !== 0 && (
         <div className={styles.record}>
-          <Card content={<RecordTable record={fighter.record} />} />
+          <Card content={<RecordTable record={record} />} />
         </div>
       )}
     </div>

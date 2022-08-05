@@ -5,6 +5,7 @@ import cn from "classnames";
 import styles from "./FightDetail.module.css";
 import Card from "../Cards/Card/Card";
 import Fighter from "../Fighter/Fighter";
+import { Fighter as FighterType } from "../../types";
 
 export default function FightDetail({ red, blue }: Fight) {
   const [fight, setFight] = useState(undefined as any);
@@ -18,8 +19,8 @@ export default function FightDetail({ red, blue }: Fight) {
   }, []);
 
   if (fight) {
-    const red = fight[0];
-    const blue = fight[1];
+    const red: FighterType = fight[0];
+    const blue: FighterType = fight[1];
     return (
       <div className={styles.container}>
         <div
@@ -42,14 +43,14 @@ export default function FightDetail({ red, blue }: Fight) {
             className={styles.fighter_card}
             border={"solid 1px blue"}
             borderImage={"linear-gradient(to top right, darkred, red) 1"}
-            content={<Fighter fighter={red} />}
+            content={<Fighter {...red} />}
           />
           <Card
             alignment="flex-start"
             className={styles.fighter_card}
             border={"solid 1px blue"}
             borderImage={"linear-gradient(to top right, darkblue, blue) 1"}
-            content={<Fighter fighter={blue} />}
+            content={<Fighter {...blue} />}
           />
         </div>
       </div>

@@ -1,14 +1,17 @@
-import type { NextPage } from "next";
-import { FightEvent } from "../../types";
+import { Event as EventType } from "../../types";
 import EventCard from "../../components/Cards/EventCard/EventCard";
 import styles from "../../styles/allevents.module.css";
 import { getAllEvents } from "../../lib/event";
 
-const Home: NextPage = ({ events }: any) => {
+interface Props {
+  events: Array<EventType>;
+}
+
+const Home = ({ events }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
-        {events.map((event: FightEvent) => (
+        {events.map((event: EventType) => (
           <EventCard
             id={event.id!}
             org={event.org}

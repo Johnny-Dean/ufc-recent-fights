@@ -28,7 +28,7 @@ function FightRecordRow({ outcome, opponent, method, round, time }: PastFight) {
 }
 
 interface RecordTableProps {
-  record: PastFight[];
+  record: Array<PastFight>;
 }
 export default function RecordTable({ record }: RecordTableProps) {
   return (

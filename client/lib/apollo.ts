@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const apolloClient = new ApolloClient({
-  uri: "https://mma-fights-backend.herokuapp.com/",
+  uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 

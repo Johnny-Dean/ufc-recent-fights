@@ -1,21 +1,24 @@
 import { getEventDetails } from "../../lib/event";
-import { Fight } from "../../types";
+import { Fight, Event as EventType } from "../../types";
 import styles from "../../styles/event.module.css";
 import FightDetail from "../../components/FightDetail/FightDetail";
 import Link from "next/link";
 
-export default function Event({ eventData }: any) {
+interface Props {
+  event: EventType;
+}
+export default function Event({ event }: Props) {
   return (
     <>
       <div className={styles.container}>
         <Link href="/events/allevents">
           <a>
-            <h1>{eventData?.event?.title}</h1>
+            <h1>{event?.title}</h1>
           </a>
         </Link>
 
         <div className={styles.fight_container}>
-          {eventData?.event?.fights.map((fight: Fight, index: number) => (
+          {event?.fights.map((fight: Fight, index: number) => (
             <FightDetail key={index} {...fight} />
           ))}
         </div>
@@ -25,11 +28,12 @@ export default function Event({ eventData }: any) {
 }
 
 export async function getServerSideProps({ params }: any) {
+  console.log(params.id);
   const request = await getEventDetails(params.id);
-  const eventData = await request.data;
+  const event = await request.data.event;
   return {
     props: {
-      eventData,
+      event,
     },
   };
 }

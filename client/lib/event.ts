@@ -16,8 +16,6 @@ export const AllEventsQuery = gql`
 `;
 
 export async function getAllEvents() {
-  // Research better way besides interfaces to define this ?? probably an inline way
-  // Figure out what to do about all the anys because we are entirely cirumventing typescript
   return apolloClient.query({
     query: AllEventsQuery,
   });

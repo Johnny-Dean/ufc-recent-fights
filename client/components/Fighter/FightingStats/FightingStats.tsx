@@ -1,17 +1,9 @@
+import { Ground, Striking } from "../../../types";
 import styles from "./FightingStats.module.css";
+
 interface FightStatsProps {
-  striking: {
-    strikes_per_minute: number;
-    strikes_absorbed: number;
-    strike_accuracy: number;
-    strike_defense: number;
-  };
-  ground: {
-    takedown_average: number;
-    takedown_accuracy: number;
-    takedown_defense: number;
-    submissions_attempted: number;
-  };
+  striking: Striking;
+  ground: Ground;
 }
 
 function StrikingStats({ striking }: FightStatsProps) {

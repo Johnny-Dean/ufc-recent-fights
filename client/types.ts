@@ -1,3 +1,24 @@
+export interface Physical {
+  height?: number;
+  weight?: number;
+  reach?: number;
+  age?: number;
+}
+
+export interface Striking {
+  strikes_per_minute: number;
+  strikes_absorbed: number;
+  strike_accuracy: number;
+  strike_defense: number;
+}
+
+export interface Ground {
+  takedown_average: number;
+  takedown_accuracy: number;
+  takedown_defense: number;
+  submissions_attempted: number;
+}
+
 export interface PastFight {
   outcome: string;
   opponent: string;
@@ -6,29 +27,22 @@ export interface PastFight {
   time: string;
 }
 
-export interface Physical {
-  height?: number;
-  weight?: number;
-  reach?: number;
-  age?: number;
-}
 export interface Fighter {
   name: string;
+  stats: {
+    striking: Striking;
+    ground: Ground;
+  };
   physical: Physical;
-  record: PastFight[];
+  record: Array<PastFight>;
 }
-// can we use extends here somehow? repeating the code is gross lolz
+
 export interface Fight {
   red: string;
   blue: string;
 }
 
-export interface DetailedFight {
-  red: Fighter;
-  blue: Fighter;
-}
-
-export interface FightEvent {
+export interface Event {
   id: string;
   org: string;
   title: string;
