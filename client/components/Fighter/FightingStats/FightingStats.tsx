@@ -36,7 +36,7 @@ function GroundStats({ ground }: FightStatsProps) {
       </div>
       <div>
         <p>{ground.takedown_average}</p>
-        <p>{ground.takedown_accuracy}</p>
+        <p>{ground.takedown_accuracy}%</p>
         <p>{ground.takedown_defense}%</p>
         <p>{ground.submissions_attempted}%</p>
       </div>
