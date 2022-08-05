@@ -1,13 +1,5 @@
 import styles from "./Card.module.css";
 
-interface Props {
-  content: React.ReactNode;
-  width: string;
-  color: string;
-  border: string;
-  borderImage: string;
-  alignment: string;
-}
 export default function Card({
   content,
   width = "auto",
@@ -15,7 +7,7 @@ export default function Card({
   border = "",
   borderImage = "",
   alignment = "",
-}: Props) {
+}: any) {
   return (
     <div
       className={styles.card}
